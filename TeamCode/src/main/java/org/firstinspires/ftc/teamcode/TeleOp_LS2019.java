@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 /**
- * Created by Sam on 7/4/2019.
+ * Created by Sam on 9/12/2019.
  */
 
 @TeleOp(name="chad", group="Pushbot")
@@ -24,7 +24,22 @@ public class TeleOp_LS2019 extends LinearOpMode{
             chad.leftMotor.setPower(leftDrive);
             chad.rightMotor.setPower(rightDrive);
 
+            boolean clawIn = gamepad1.left_bumper;
+            boolean clawOut = gamepad1.right_bumper;
 
+            //Servos to control claw
+            if (clawIn){
+                chad.leftServo.setPosition(chad.leftServo.getPosition() >= 0.98 ? 1.0 : chad.leftServo.getPosition() + .02);
+                chad.rightServo.setPosition(chad.rightServo.getPosition() >= 0.98 ? 1.0 : chad.rightServo.getPosition() + .02);
+            }
+            else if (clawOut){
+                chad.leftServo.setPosition(chad.leftServo.getPosition() <= 0.25 ? 0.2 : chad.leftServo.getPosition() - .02);
+                chad.rightServo.setPosition(chad.rightServo.getPosition() <= 0.25 ? 0.2 : chad.rightServo.getPosition() - .02);
+            }
+            else {
+                chad.leftServo.setPosition(chad.leftServo.getPosition());
+                chad.rightServo.setPosition(chad.rightServo.getPosition());
+            }
 
             /**
              *  Alternative Input Types - doubles/floats

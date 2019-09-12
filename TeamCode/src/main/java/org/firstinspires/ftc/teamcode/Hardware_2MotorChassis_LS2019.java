@@ -9,13 +9,14 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by Sam on 9/12/2019.
  */
 
-public class Hardware_2MotorChassis_LS2019 {
+class Hardware_2MotorChassis_LS2019 {
 
     //Drive train:
     DcMotor leftMotor;
     DcMotor rightMotor;
     Servo leftServo;
     Servo rightServo;
+    Servo clawMotionServo;
 
     public void init(HardwareMap hwMap){
         //set direction of motors facing opposite directions
@@ -23,10 +24,12 @@ public class Hardware_2MotorChassis_LS2019 {
         rightMotor = hwMap.dcMotor.get("rightDrive");
         leftServo = hwMap.servo.get("leftClaw");
         rightServo = hwMap.servo.get("rightClaw");
+        clawMotionServo = hwMap.servo.get("rotateClaw");
 
         //set servos to original position
         leftServo.setPosition(0);
         rightServo.setPosition(0);
+        clawMotionServo.setPosition(0);
 
         //DcMotors: Clockwise by default; clockwise on left side = forward
         leftMotor.setDirection(DcMotor.Direction.FORWARD);
