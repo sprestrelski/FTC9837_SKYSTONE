@@ -12,6 +12,8 @@ import com.qualcomm.robotcore.util.Range;
 @TeleOp(name="chad", group="Pushbot")
 public class TeleOp_LS2019 extends LinearOpMode{
     Hardware_2MotorChassis_LS2019 chad = new Hardware_2MotorChassis_LS2019();
+    double          clawOffset      = 0;                       // Servo mid position
+    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
     @Override
     public void runOpMode(){
         chad.init(hardwareMap);
@@ -28,7 +30,17 @@ public class TeleOp_LS2019 extends LinearOpMode{
             boolean clawIn = gamepad1.left_bumper;
             boolean clawOut = gamepad1.right_bumper;
 
-            double clawPosition = Range.clip(gamepad1.right_trigger, 0, 1.0) ;
+            //double clawPosition = Range.clip(gamepad1.right_trigger, 0, 1.0)
+
+            // Use gamepad y and gamepad a buttons to lift and lower the claw
+            if (gamepad1.y)
+                clawOffset += CLAW_SPEED;
+            else if (gamepad1.a)
+                clawOffset -= CLAW_SPEED;
+
+            clawOffset = Range.clip(clawOffset, -0.5, 0.5);
+            chad.clawMotionServo.setPosition(chad.MID_SERVO + clawOffset);
+
 
             //Servos to control claw
             if (clawIn){
@@ -44,7 +56,8 @@ public class TeleOp_LS2019 extends LinearOpMode{
                 chad.rightServo.setPosition(chad.rightServo.getPosition());
             }
 
-            chad.clawMotionServo.setPosition(clawPosition);
+
+            //chad.clawMotionServo.setPosition(clawPosition);
 
             /**
              *  Alternative Input Types - doubles/floats

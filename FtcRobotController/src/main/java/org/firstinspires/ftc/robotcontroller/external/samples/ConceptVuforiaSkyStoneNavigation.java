@@ -108,7 +108,7 @@ public class ConceptVuforiaSkyStoneNavigation extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+            "AYuXDc//////AAABmW3DOZFrqkEOjiw1BAdoTSiDqSwYTxPEFBWFpGwtWqnqZrdeP+5+WpMZ4pTzDdHaJX4Y6Axdbk5yYlNFsRlqonurS0GFLcpb6n5nVDhunpVB9pdVwDSg8K55o5jeY95JUBKcdeiwX8ScQj6CONjEZML4gkHukeSOYO0yRmI+vaF3j9TrA0gKOuQzdcLDv/KK+/IvkSadtQs2gT0+ib+Y+G/GonW9RXQly5il/QNytsvfZazjAcSt/nYz3NV6ARcz4dNTOwMGnuwCYyhD/WaLxSiBtSDDle/Jh5Uf4W6+ZX3EZjbvkL4pNxEfmj2BQtW0KR2rJ9PVuLnWoWnwImwztgssY1VZ98UJUApRqfpRZvB9";
 
     // Since ImageTarget trackables use mm to specifiy their dimensions, we must use mm for all the physical dimension.
     // We will define some constants and conversions here

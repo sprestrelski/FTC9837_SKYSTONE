@@ -18,6 +18,8 @@ class Hardware_2MotorChassis_LS2019 {
     Servo rightServo;
     Servo clawMotionServo;
 
+    public static final double MID_SERVO       =  0.5 ;
+
     public void init(HardwareMap hwMap){
         //set direction of motors facing opposite directions
         leftMotor = hwMap.dcMotor.get("leftDrive");
