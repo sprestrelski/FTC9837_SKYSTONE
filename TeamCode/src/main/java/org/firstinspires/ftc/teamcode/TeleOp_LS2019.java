@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 /**
  * Created by Sam on 9/12/2019.
@@ -27,6 +28,8 @@ public class TeleOp_LS2019 extends LinearOpMode{
             boolean clawIn = gamepad1.left_bumper;
             boolean clawOut = gamepad1.right_bumper;
 
+            double clawPosition = Range.clip(gamepad1.right_trigger, 0, 1.0) ;
+
             //Servos to control claw
             if (clawIn){
                 chad.leftServo.setPosition(chad.leftServo.getPosition() >= 0.98 ? 1.0 : chad.leftServo.getPosition() + .02);
@@ -40,6 +43,8 @@ public class TeleOp_LS2019 extends LinearOpMode{
                 chad.leftServo.setPosition(chad.leftServo.getPosition());
                 chad.rightServo.setPosition(chad.rightServo.getPosition());
             }
+
+            chad.clawMotionServo.setPosition(clawPosition);
 
             /**
              *  Alternative Input Types - doubles/floats
