@@ -39,7 +39,7 @@ public class TeleOp_LS2019 extends LinearOpMode{
                 clawOffset -= CLAW_SPEED;
 
             clawOffset = Range.clip(clawOffset, -0.5, 0.5);
-            chad.clawMotionServo.setPosition(chad.MID_SERVO + clawOffset);
+            //chad.clawMotionServo.setPosition(chad.MID_SERVO + clawOffset);
 
 
             //Servos to control claw
