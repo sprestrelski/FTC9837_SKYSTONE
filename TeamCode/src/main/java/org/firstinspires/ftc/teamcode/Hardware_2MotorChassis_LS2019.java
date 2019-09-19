@@ -30,7 +30,7 @@ class Hardware_2MotorChassis_LS2019 {
 
         //set servos to original position
         leftServo.setPosition(0);
-        rightServo.setPosition(0);
+        rightServo.setPosition(1);
         //clawMotionServo.setPosition(MID_SERVO);
 
         //DcMotors: Clockwise by default; clockwise on left side = forward

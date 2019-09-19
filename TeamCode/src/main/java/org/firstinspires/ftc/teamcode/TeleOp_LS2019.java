@@ -45,11 +45,11 @@ public class TeleOp_LS2019 extends LinearOpMode{
             //Servos to control claw
             if (clawIn){
                 chad.leftServo.setPosition(chad.leftServo.getPosition() >= 0.98 ? 1.0 : chad.leftServo.getPosition() + .02);
-                chad.rightServo.setPosition(chad.rightServo.getPosition() >= 0.98 ? 1.0 : chad.rightServo.getPosition() + .02);
+                chad.rightServo.setPosition(chad.rightServo.getPosition() >= 0.98 ? 1.0 : chad.rightServo.getPosition() - .02);
             }
             else if (clawOut){
                 chad.leftServo.setPosition(chad.leftServo.getPosition() <= 0.25 ? 0.2 : chad.leftServo.getPosition() - .02);
-                chad.rightServo.setPosition(chad.rightServo.getPosition() <= 0.25 ? 0.2 : chad.rightServo.getPosition() - .02);
+                chad.rightServo.setPosition(chad.rightServo.getPosition() <= 0.25 ? 0.2 : chad.rightServo.getPosition() + .02);
             }
             else {
                 chad.leftServo.setPosition(chad.leftServo.getPosition());
