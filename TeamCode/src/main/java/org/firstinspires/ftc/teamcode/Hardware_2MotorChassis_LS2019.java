@@ -29,7 +29,7 @@ class Hardware_2MotorChassis_LS2019 {
         //clawMotionServo = hwMap.servo.get("rotateClaw");
 
         //set servos to original position
-        leftServo.setPosition(0);
+        leftServo.setPosition(1);
         rightServo.setPosition(1);
         //clawMotionServo.setPosition(MID_SERVO);
 

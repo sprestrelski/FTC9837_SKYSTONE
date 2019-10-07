@@ -26,12 +26,12 @@ class Hardware_4MotorChassis_LS2019 {
         leftBackMotor = hwMap.dcMotor.get("leftBackDrive");
         rightBackMotor = hwMap.dcMotor.get("rightBackDrive");
 
-        leftServo = hwMap.servo.get("leftClaw");
-        rightServo = hwMap.servo.get("rightClaw");
+        //leftServo = hwMap.servo.get("leftClaw");
+        //rightServo = hwMap.servo.get("rightClaw");
 
         //set servos to original position
-        leftServo.setPosition(0);
-        rightServo.setPosition(1);
+        //leftServo.setPosition(.5);
+        //rightServo.setPosition(.5);
 
         //DcMotors: Clockwise by default; clockwise on left side = forward
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
