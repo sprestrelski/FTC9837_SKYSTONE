@@ -19,64 +19,19 @@ public class TeleOp_Mecanum extends LinearOpMode{
         while (opModeIsActive()) {
 
             //rotation - right joystick
-            double rotationControl = gamepad1.left_stick_x;
+            double rightX = gamepad1.left_stick_x;
             //movement - left joystick
             double leftX = gamepad1.right_stick_x;
             double leftY = gamepad1.right_stick_y;
             //wheel/roller intake - right trigger
 
 
-            //driving - movement
-            /*if ( (leftX > 0.5 && leftY > 0.5)  || (leftX < -0.5 && leftY <-0.5 ) ) {
-                //move diagonally y=x
-                robot.LFmotor.setPower(leftX);
-                robot.LBmotor.setPower(-leftX);
-                robot.RFmotor.setPower(-leftX);
-                robot.RBmotor.setPower(leftX);
-            } else */
-
-            if (leftX > 0.5) {
-                //move right
-                robot.LFmotor.setPower(leftX);
-                robot.LBmotor.setPower(-leftX);
-                robot.RFmotor.setPower(-leftX);
-                robot.RBmotor.setPower(leftX);
-            } else if (leftX < -0.5) {
-                //move left
-                robot.LFmotor.setPower(-leftX);
-                robot.LBmotor.setPower(leftX);
-                robot.RFmotor.setPower(leftX);
-                robot.RBmotor.setPower(-leftX);
-            } else if (leftY > 0.5 || leftY < -0.5){
-                //move front and back only
-                robot.LFmotor.setPower(leftX);
-                robot.LBmotor.setPower(leftX);
-                robot.RFmotor.setPower(leftX);
-                robot.RBmotor.setPower(leftX);
-            }
-
-
-            /*
-            double left = -gamepad1.left_stick_y;
-            double right = -gamepad1.right_stick_y;
-            double leftX = gamepad1.right_stick_x;
-            */
-
-            /* Driving
-            if (leftX > 0.5 || leftX < -0.5) {
-                double slowleftX = leftX/1.5;
-                robot.leftFrontMotor.setPower(slowleftX);
-                robot.leftBackMotor.setPower(-slowleftX);
-                robot.rightFrontMotor.setPower(-slowleftX);
-                robot.rightBackMotor.setPower(slowleftX);
-            } else {
-                double slowLeft = left/1.5;
-                double slowRight = right/1.5;
-                robot.leftFrontMotor.setPower(slowLeft);
-                robot.leftBackMotor.setPower(slowLeft);
-                robot.rightFrontMotor.setPower(slowRight);
-                robot.rightBackMotor.setPower(slowRight);
-            }*/
+            //driving
+            robot.LFmotor.setPower(leftY + rightX + leftX );
+            robot.RFmotor.setPower(leftY - rightX - leftX);
+            robot.LBmotor.setPower(leftY + rightX - leftX);
+            robot.RBmotor.setPower(leftY - rightX + leftX);
+            
 
         }
     }
