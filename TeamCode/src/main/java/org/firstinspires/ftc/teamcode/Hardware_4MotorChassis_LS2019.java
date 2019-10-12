@@ -21,10 +21,10 @@ class Hardware_4MotorChassis_LS2019 {
 
     public void init(HardwareMap hwMap){
         //set direction of motors facing opposite directions
-        leftFrontMotor = hwMap.dcMotor.get("leftFrontDrive");
-        rightFrontMotor = hwMap.dcMotor.get("rightFrontDrive");
-        leftBackMotor = hwMap.dcMotor.get("leftBackDrive");
-        rightBackMotor = hwMap.dcMotor.get("rightBackDrive");
+        leftFrontMotor = hwMap.dcMotor.get("LFmotor");
+        rightFrontMotor = hwMap.dcMotor.get("RFmotor");
+        leftBackMotor = hwMap.dcMotor.get("LBmotor");
+        rightBackMotor = hwMap.dcMotor.get("RBmotor");
 
         //leftServo = hwMap.servo.get("leftClaw");
         //rightServo = hwMap.servo.get("rightClaw");

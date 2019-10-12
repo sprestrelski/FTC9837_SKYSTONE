@@ -24,15 +24,17 @@ public class TeleOp_Mecanum extends LinearOpMode{
             double leftX = gamepad1.right_stick_x;
             double leftY = gamepad1.right_stick_y;
             //wheel/roller intake - right trigger
-
+            double wheelIntake = gamepad1.right_trigger;
 
             //driving
             robot.LFmotor.setPower(leftY + rightX + leftX );
             robot.RFmotor.setPower(leftY - rightX - leftX);
             robot.LBmotor.setPower(leftY + rightX - leftX);
             robot.RBmotor.setPower(leftY - rightX + leftX);
-            
 
+            //compliant wheels motors
+            //robot.LCompliantmotor.setPower(wheelIntake);
+            //robot.RCompliantmotor.setPower(wheelIntake);
         }
     }
 

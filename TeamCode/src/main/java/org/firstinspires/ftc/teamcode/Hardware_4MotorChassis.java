@@ -17,19 +17,36 @@ class Hardware_4MotorChassis {
     DcMotor RFmotor;
     DcMotor RBmotor;
 
+    //DcMotor LCompliantmotor;
+    //SDcMotor RCompliantmotor;
+
     public void init(HardwareMap hwMap){
 
-        //set direction of motors facing opposite directions
-        LFmotor = hwMap.dcMotor.get("LFdrive");
-        RBmotor = hwMap.dcMotor.get("RFdrive");
-        LBmotor = hwMap.dcMotor.get("LBdrive");
-        RBmotor = hwMap.dcMotor.get("RBdrive");
+        // assigns names
+        LFmotor = hwMap.dcMotor.get("LFmotor");
+        RBmotor = hwMap.dcMotor.get("RFmotor");
+        LBmotor = hwMap.dcMotor.get("LBmotor");
+        RBmotor = hwMap.dcMotor.get("RBmotor");
 
-        //DcMotors: Clockwise by default; clockwise on left side = forward
-        LFmotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        LBmotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        RFmotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RBmotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        //LCompliantmotor = hwMap.dcMotor.get("RCmotor");
+        //RCompliantmotor = hwMap.dcMotor.get("LCmotor");
+
+
+        // set brakes on motors
+        LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        RFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        RBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        // set direction of motors facing opposite directions
+        // DcMotors: Clockwise by default; clockwise on left side = forward
+        LFmotor.setDirection(DcMotor.Direction.FORWARD);
+        LBmotor.setDirection(DcMotor.Direction.FORWARD);
+        RFmotor.setDirection(DcMotor.Direction.REVERSE);
+        RBmotor.setDirection(DcMotor.Direction.REVERSE);
+
+        //LCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        //RCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //set pwr to 0
         LFmotor.setPower(0.0);
@@ -37,6 +54,8 @@ class Hardware_4MotorChassis {
         RFmotor.setPower(0.0);
         RBmotor.setPower(0.0);
 
+        //LCompliantmotor.setPower(0.0);
+        //RCompliantmotor.setPower(0.0);
 
     }
 }
