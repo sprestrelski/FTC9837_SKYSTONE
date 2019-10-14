@@ -10,10 +10,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="TeleOp: Mecanum", group="Linear Opmode")
 public class TeleOp_Mecanum extends LinearOpMode{
-    Hardware_4MotorChassis robot = new Hardware_4MotorChassis();
+    Hardware_4MotorChassis pumpkin = new Hardware_4MotorChassis();
     @Override
     public void runOpMode() {
-        robot.init(hardwareMap);
+        pumpkin.init(hardwareMap);
         waitForStart();
 
         while (opModeIsActive()) {
@@ -27,14 +27,14 @@ public class TeleOp_Mecanum extends LinearOpMode{
             double wheelIntake = gamepad1.right_trigger;
 
             //driving
-            robot.LFmotor.setPower(leftY + rightX + leftX );
-            robot.RFmotor.setPower(leftY - rightX - leftX);
-            robot.LBmotor.setPower(leftY + rightX - leftX);
-            robot.RBmotor.setPower(leftY - rightX + leftX);
+            pumpkin.LFmotor.setPower(leftY + rightX + leftX );
+            pumpkin.RFmotor.setPower(leftY - rightX - leftX);
+            pumpkin.LBmotor.setPower(leftY + rightX - leftX);
+            pumpkin.RBmotor.setPower(leftY - rightX + leftX);
 
             //compliant wheels motors
-            //robot.LCompliantmotor.setPower(wheelIntake);
-            //robot.RCompliantmotor.setPower(wheelIntake);
+            //pumpkin.LCompliantmotor.setPower(wheelIntake);
+            //pumpkin.RCompliantmotor.setPower(wheelIntake);
         }
     }
 

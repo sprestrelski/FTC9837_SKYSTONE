@@ -24,8 +24,8 @@ class Hardware_4MotorChassis {
 
         // assigns names
         LFmotor = hwMap.dcMotor.get("LFmotor");
-        RBmotor = hwMap.dcMotor.get("RFmotor");
         LBmotor = hwMap.dcMotor.get("LBmotor");
+        RFmotor = hwMap.dcMotor.get("RFmotor");
         RBmotor = hwMap.dcMotor.get("RBmotor");
 
         //LCompliantmotor = hwMap.dcMotor.get("RCmotor");
