@@ -5,23 +5,20 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 /**
- * Created by Sam on 10/4/2019.
+ * Created by Sam on 10/16/2019.
+ * Edited 10/16: includes motors for the compliant intake
  *
  * LF 0         RF 1
  *      HUB 1
  * LB 2         RB 3
- *
- * LC 0         RC 1
- *      HUB @
- *
  */
 
-@TeleOp(name="TeleOp: Mecanum", group="Linear Opmode")
-public class TeleOp_Mecanum extends LinearOpMode{
-    Hardware_4MotorChassis pumpkin = new Hardware_4MotorChassis();
+@TeleOp(name="TeleOp: MecanumTest", group="Linear Opmode")
+public class TeleOp_MecanumTest extends LinearOpMode{
+    Hardware_MecanumTest pumpkin1 = new Hardware_MecanumTest();
     @Override
     public void runOpMode() {
-        pumpkin.init(hardwareMap);
+        pumpkin1.init(hardwareMap);
         waitForStart();
 
         while (opModeIsActive()) {
@@ -35,14 +32,14 @@ public class TeleOp_Mecanum extends LinearOpMode{
             double wheelIntake = gamepad1.right_trigger;
 
             //driving
-            pumpkin.LFmotor.setPower(leftY + rightX + leftX );
-            pumpkin.RFmotor.setPower(leftY - rightX - leftX);
-            pumpkin.LBmotor.setPower(leftY + rightX - leftX);
-            pumpkin.RBmotor.setPower(leftY - rightX + leftX);
+            pumpkin1.LFmotor.setPower(leftY + rightX + leftX );
+            pumpkin1.RFmotor.setPower(leftY - rightX - leftX);
+            pumpkin1.LBmotor.setPower(leftY + rightX - leftX);
+            pumpkin1.RBmotor.setPower(leftY - rightX + leftX);
 
             //compliant wheels motors
-            //pumpkin.LCompliantmotor.setPower(wheelIntake);
-            //pumpkin.RCompliantmotor.setPower(wheelIntake);
+            pumpkin1.LCompliantmotor.setPower(wheelIntake);
+            pumpkin1.RCompliantmotor.setPower(wheelIntake);
         }
     }
 
