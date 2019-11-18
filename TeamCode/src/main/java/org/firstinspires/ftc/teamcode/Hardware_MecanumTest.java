@@ -6,7 +6,18 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
- * Created by Sam on 9/19/2019.
+ *  Created by Sam on 9/19/2019.
+ *  LC 0         RC 1
+ *        HUB 2
+ *  FB 2
+ *
+ *  HUB 2: address 3
+ *
+ *  LF 0         RF 1
+ *        HUB 1
+ *  LB 2         RB 3
+ *
+ *  HUB 1: address 2
  */
 
 class Hardware_MecanumTest {
@@ -20,6 +31,8 @@ class Hardware_MecanumTest {
     DcMotor LCompliantmotor;
     DcMotor RCompliantmotor;
 
+    DcMotor FourBarmotor;
+
     public void init(HardwareMap hwMap){
 
         // assigns names
@@ -30,6 +43,8 @@ class Hardware_MecanumTest {
 
         LCompliantmotor = hwMap.dcMotor.get("RCmotor");
         RCompliantmotor = hwMap.dcMotor.get("LCmotor");
+
+        FourBarmotor = hwMap.dcMotor.get("4Bmotor");
 
 
         // set brakes on motors
@@ -56,6 +71,7 @@ class Hardware_MecanumTest {
 
         LCompliantmotor.setPower(0.0);
         RCompliantmotor.setPower(0.0);
+        FourBarmotor.setPower(0);
 
     }
 }

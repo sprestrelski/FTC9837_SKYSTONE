@@ -23,23 +23,54 @@ public class TeleOp_MecanumTest extends LinearOpMode{
 
         while (opModeIsActive()) {
 
+            /*
             //rotation - right joystick
             double rightX = gamepad1.right_stick_x;
             //movement - left joystick
             double leftX = gamepad1.left_stick_x;
             double leftY = gamepad1.left_stick_y;
-            //wheel/roller intake - right trigger
-            double wheelIntake = gamepad1.right_trigger;
+
 
             //driving
             pumpkin1.LFmotor.setPower(leftY + rightX + leftX );
             pumpkin1.RFmotor.setPower(leftY - rightX - leftX);
             pumpkin1.LBmotor.setPower(leftY + rightX - leftX);
             pumpkin1.RBmotor.setPower(leftY - rightX + leftX);
+            */
 
+            //wheel/roller intake - right trigger
+            double wheelIntake = gamepad1.right_trigger;
+            double wheelOuttake = -gamepad1.left_trigger;
             //compliant wheels motors
-            pumpkin1.LCompliantmotor.setPower(wheelIntake);
-            pumpkin1.RCompliantmotor.setPower(wheelIntake);
+
+            if ( gamepad1.right_trigger > 0 ) {
+                pumpkin1.LCompliantmotor.setPower(wheelIntake);
+                pumpkin1.RCompliantmotor.setPower(wheelIntake);
+            }
+            else if ( gamepad1.left_trigger > 0){
+                pumpkin1.LCompliantmotor.setPower(wheelOuttake);
+                pumpkin1.RCompliantmotor.setPower(wheelOuttake);
+            }
+
+            double left = -gamepad1.left_stick_y;
+            double right = -gamepad1.right_stick_y;
+            double rightX = gamepad1.right_stick_x;
+
+            // Driving
+            if (rightX > 0.5 || rightX < -0.5) {
+                double slowRightX = rightX/1.5;
+                pumpkin1.LFmotor.setPower(slowRightX);
+                pumpkin1.LBmotor.setPower(-slowRightX);
+                pumpkin1.RFmotor.setPower(-slowRightX);
+                pumpkin1.RBmotor.setPower(slowRightX);
+            } else {
+                double slowLeft = left/1.5;
+                double slowRight = right/1.5;
+                pumpkin1.LFmotor.setPower(slowLeft);
+                pumpkin1.LBmotor.setPower(slowLeft);
+                pumpkin1.RFmotor.setPower(slowRight);
+                pumpkin1.RBmotor.setPower(slowRight);
+            }
         }
     }
 

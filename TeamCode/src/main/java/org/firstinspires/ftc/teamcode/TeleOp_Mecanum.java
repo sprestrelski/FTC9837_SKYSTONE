@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * LB 2         RB 3
  *
  * LC 0         RC 1
- *      HUB @
+ *      HUB 2
  *
  */
 
@@ -43,6 +43,8 @@ public class TeleOp_Mecanum extends LinearOpMode{
             //compliant wheels motors
             //pumpkin.LCompliantmotor.setPower(wheelIntake);
             //pumpkin.RCompliantmotor.setPower(wheelIntake);
+
+            //pumpkin.4barmotor.setPower(0);
         }
     }
 
