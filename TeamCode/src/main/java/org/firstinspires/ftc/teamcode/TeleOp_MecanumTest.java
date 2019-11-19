@@ -51,7 +51,28 @@ public class TeleOp_MecanumTest extends LinearOpMode{
                 pumpkin1.LCompliantmotor.setPower(wheelOuttake);
                 pumpkin1.RCompliantmotor.setPower(wheelOuttake);
             }
+            else{
+                pumpkin1.LCompliantmotor.setPower(0);
+                pumpkin1.RCompliantmotor.setPower(0);
+            }
 
+
+            //four bar - right/left bumper
+            boolean raiseBar = gamepad1.right_bumper;
+            boolean lowerBar = gamepad1.left_bumper;
+
+            if (raiseBar) {
+                pumpkin1.FourBarmotor.setPower(.75);
+            }
+            else if (lowerBar){
+                pumpkin1.FourBarmotor.setPower(-.75);
+            }
+            else{
+                pumpkin1.FourBarmotor.setPower(0);
+            }
+
+
+            //driving
             double left = -gamepad1.left_stick_y;
             double right = -gamepad1.right_stick_y;
             double rightX = gamepad1.right_stick_x;

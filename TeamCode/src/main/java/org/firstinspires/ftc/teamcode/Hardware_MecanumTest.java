@@ -63,6 +63,8 @@ class Hardware_MecanumTest {
         LCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
         RCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        FourBarmotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
         //set pwr to 0
         LFmotor.setPower(0.0);
         LBmotor.setPower(0.0);
