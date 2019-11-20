@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="TeleOp: Mecanum", group="Linear Opmode")
 public class TeleOp_Mecanum extends LinearOpMode{
-    Hardware_4MotorChassis pumpkin = new Hardware_4MotorChassis();
+    Hardware_Pumpkin pumpkin = new Hardware_Pumpkin();
     @Override
     public void runOpMode() {
         pumpkin.init(hardwareMap);
@@ -26,13 +26,13 @@ public class TeleOp_Mecanum extends LinearOpMode{
 
         while (opModeIsActive()) {
 
+            //**MOVEMENT**//
+
             //rotation - right joystick
             double rightX = gamepad1.right_stick_x;
             //movement - left joystick
             double leftX = gamepad1.left_stick_x;
             double leftY = gamepad1.left_stick_y;
-            //wheel/roller intake - right trigger
-            double wheelIntake = gamepad1.right_trigger;
 
             //driving
             pumpkin.LFmotor.setPower(leftY + rightX + leftX );
@@ -40,11 +40,43 @@ public class TeleOp_Mecanum extends LinearOpMode{
             pumpkin.LBmotor.setPower(leftY + rightX - leftX);
             pumpkin.RBmotor.setPower(leftY - rightX + leftX);
 
-            //compliant wheels motors
-            //pumpkin.LCompliantmotor.setPower(wheelIntake);
-            //pumpkin.RCompliantmotor.setPower(wheelIntake);
 
-            //pumpkin.4barmotor.setPower(0);
+            //**COMPLIANT WHEEL INTAKE**//
+
+            //wheel/roller intake - right trigger
+            double wheelIntake = gamepad1.right_trigger;
+            double wheelOuttake = -gamepad1.left_trigger;
+
+            //compliant wheels motors
+            if ( gamepad1.right_trigger > 0 ) {
+                pumpkin.LCompliantmotor.setPower(wheelIntake);
+                pumpkin.RCompliantmotor.setPower(wheelIntake);
+            }
+            else if ( gamepad1.left_trigger > 0){
+                pumpkin.LCompliantmotor.setPower(wheelOuttake);
+                pumpkin.RCompliantmotor.setPower(wheelOuttake);
+            }
+            else{
+                pumpkin.LCompliantmotor.setPower(0);
+                pumpkin.RCompliantmotor.setPower(0);
+            }
+
+
+            //**FOUR BAR LIFT**//
+
+            //four bar - right/left bumper
+            boolean raiseBar = gamepad1.right_bumper;
+            boolean lowerBar = gamepad1.left_bumper;
+
+            if (raiseBar) {
+                pumpkin.FourBarmotor.setPower(.75);
+            }
+            else if (lowerBar){
+                pumpkin.FourBarmotor.setPower(-.75);
+            }
+            else{
+                pumpkin.FourBarmotor.setPower(0);
+            }
         }
     }
 
