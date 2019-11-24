@@ -33,6 +33,9 @@ class Hardware_MecanumTest {
 
     DcMotor FourBarmotor;
 
+    Servo LClaw;
+    Servo RClaw;
+
     public void init(HardwareMap hwMap){
 
         // assigns names
@@ -46,6 +49,8 @@ class Hardware_MecanumTest {
 
         FourBarmotor = hwMap.dcMotor.get("4Bmotor");
 
+        LClaw = hwMap.servo.get("LClaw");
+        RClaw = hwMap.servo.get("RClaw");
 
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -65,6 +70,9 @@ class Hardware_MecanumTest {
 
         FourBarmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
+        LClaw.setDirection(Servo.Direction.FORWARD);
+        RClaw.setDirection(Servo.Direction.REVERSE);
+
         //set pwr to 0
         LFmotor.setPower(0.0);
         LBmotor.setPower(0.0);
@@ -74,6 +82,9 @@ class Hardware_MecanumTest {
         LCompliantmotor.setPower(0.0);
         RCompliantmotor.setPower(0.0);
         FourBarmotor.setPower(0);
+
+        LClaw.setPosition(0);
+        RClaw.setPosition(0);
 
     }
 }

@@ -23,7 +23,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
 
         while (opModeIsActive()) {
 
-            /*
+
             //rotation - right joystick
             double rightX = gamepad1.right_stick_x;
             //movement - left joystick
@@ -36,7 +36,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             pumpkin1.RFmotor.setPower(leftY - rightX - leftX);
             pumpkin1.LBmotor.setPower(leftY + rightX - leftX);
             pumpkin1.RBmotor.setPower(leftY - rightX + leftX);
-            */
+
 
             //wheel/roller intake - right trigger
             double wheelIntake = gamepad1.right_trigger;
@@ -72,6 +72,21 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             }
 
 
+            /*double servoPosition = 0;
+            pumpkin1.LClaw.setPosition(servoPosition);
+            pumpkin1.RClaw.setPosition(1-servoPosition);
+            */
+            if(gamepad1.dpad_down) {
+                // close claw
+                pumpkin1.LClaw.setPosition( pumpkin1.LClaw.getPosition() + .1);
+                pumpkin1.RClaw.setPosition( pumpkin1.LClaw.getPosition() + .1);
+            } else if (gamepad1.dpad_up) {
+                // open claw
+                pumpkin1.LClaw.setPosition( pumpkin1.LClaw.getPosition() - .1);
+                pumpkin1.RClaw.setPosition( pumpkin1.LClaw.getPosition() - .1);
+            }
+
+            /*
             //driving
             double left = -gamepad1.left_stick_y;
             double right = -gamepad1.right_stick_y;
@@ -91,7 +106,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
                 pumpkin1.LBmotor.setPower(slowLeft);
                 pumpkin1.RFmotor.setPower(slowRight);
                 pumpkin1.RBmotor.setPower(slowRight);
-            }
+            }*/
         }
     }
 
