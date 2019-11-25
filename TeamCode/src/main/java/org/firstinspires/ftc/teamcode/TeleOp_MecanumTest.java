@@ -28,7 +28,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             double rightX = gamepad1.right_stick_x;
             //movement - left joystick
             double leftX = gamepad1.left_stick_x;
-            double leftY = gamepad1.left_stick_y;
+            double leftY = -gamepad1.left_stick_y;
 
 
             //driving
@@ -41,8 +41,8 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             //wheel/roller intake - right trigger
             double wheelIntake = gamepad1.right_trigger;
             double wheelOuttake = -gamepad1.left_trigger;
-            //compliant wheels motors
 
+            //compliant wheels motors
             if ( gamepad1.right_trigger > 0 ) {
                 pumpkin1.LCompliantmotor.setPower(wheelIntake);
                 pumpkin1.RCompliantmotor.setPower(wheelIntake);
@@ -71,11 +71,24 @@ public class TeleOp_MecanumTest extends LinearOpMode{
                 pumpkin1.FourBarmotor.setPower(0);
             }
 
+            if (pumpkin1.colorS.red() < pumpkin1.colorS.blue()) {
+                // we have a blue jewel, do something here
+                pumpkin1.colorTest.setPosition(0);
+            } else {
+                // we have a red jewel, do something here
+                pumpkin1.colorTest.setPosition(1);
+            }
 
+            if (gamepad1.a) {
+                pumpkin1.claw.setPosition(0);
+            }
+            else if (gamepad1.b){
+                pumpkin1.claw.setPosition(1);
+            }
+            
             /*double servoPosition = 0;
             pumpkin1.LClaw.setPosition(servoPosition);
             pumpkin1.RClaw.setPosition(1-servoPosition);
-            */
             if(gamepad1.dpad_down) {
                 // close claw
                 pumpkin1.LClaw.setPosition( pumpkin1.LClaw.getPosition() + .1);
@@ -84,29 +97,9 @@ public class TeleOp_MecanumTest extends LinearOpMode{
                 // open claw
                 pumpkin1.LClaw.setPosition( pumpkin1.LClaw.getPosition() - .1);
                 pumpkin1.RClaw.setPosition( pumpkin1.LClaw.getPosition() - .1);
-            }
-
-            /*
-            //driving
-            double left = -gamepad1.left_stick_y;
-            double right = -gamepad1.right_stick_y;
-            double rightX = gamepad1.right_stick_x;
-
-            // Driving
-            if (rightX > 0.5 || rightX < -0.5) {
-                double slowRightX = rightX/1.5;
-                pumpkin1.LFmotor.setPower(slowRightX);
-                pumpkin1.LBmotor.setPower(-slowRightX);
-                pumpkin1.RFmotor.setPower(-slowRightX);
-                pumpkin1.RBmotor.setPower(slowRightX);
-            } else {
-                double slowLeft = left/1.5;
-                double slowRight = right/1.5;
-                pumpkin1.LFmotor.setPower(slowLeft);
-                pumpkin1.LBmotor.setPower(slowLeft);
-                pumpkin1.RFmotor.setPower(slowRight);
-                pumpkin1.RBmotor.setPower(slowRight);
             }*/
+
+
         }
     }
 

@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 /**
  * Created by Sam on 10/4/2019.
+ * Final TeleOp for the mecanum chassis Skystone robot.
  *
  * LF 0         RF 1
  *      HUB 1
@@ -32,7 +33,7 @@ public class TeleOp_Mecanum extends LinearOpMode{
             double rightX = gamepad1.right_stick_x;
             //movement - left joystick
             double leftX = gamepad1.left_stick_x;
-            double leftY = gamepad1.left_stick_y;
+            double leftY = -gamepad1.left_stick_y;
 
             //driving
             pumpkin.LFmotor.setPower(leftY + rightX + leftX );

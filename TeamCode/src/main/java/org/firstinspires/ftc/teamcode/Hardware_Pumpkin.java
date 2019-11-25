@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  *  Created by Sam on 11/20/2019.
+ *  Final HardwareMap for the mecanum chassis Skystone robot.
  *  LC 0         RC 1
  *        HUB 2
  *  FB 2

@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 /**
  *  Created by Sam on 9/19/2019.
@@ -33,8 +34,12 @@ class Hardware_MecanumTest {
 
     DcMotor FourBarmotor;
 
-    Servo LClaw;
-    Servo RClaw;
+    //Servo LClaw;
+    //Servo RClaw;
+    Servo claw;
+    Servo colorTest;
+
+    ColorSensor colorS;
 
     public void init(HardwareMap hwMap){
 
@@ -49,8 +54,12 @@ class Hardware_MecanumTest {
 
         FourBarmotor = hwMap.dcMotor.get("4Bmotor");
 
-        LClaw = hwMap.servo.get("LClaw");
-        RClaw = hwMap.servo.get("RClaw");
+        //LClaw = hwMap.servo.get("LClaw");
+        //RClaw = hwMap.servo.get("RClaw");
+        claw = hwMap.servo.get("claw");
+
+        colorTest = hwMap.servo.get("colorTest");
+        colorS = hwMap.colorSensor.get("colorS");
 
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -65,13 +74,15 @@ class Hardware_MecanumTest {
         RFmotor.setDirection(DcMotor.Direction.REVERSE);
         RBmotor.setDirection(DcMotor.Direction.REVERSE);
 
-        LCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        RCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        LCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        RCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         FourBarmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        LClaw.setDirection(Servo.Direction.FORWARD);
-        RClaw.setDirection(Servo.Direction.REVERSE);
+        //LClaw.setDirection(Servo.Direction.FORWARD);
+        //RClaw.setDirection(Servo.Direction.REVERSE);
+        claw.setDirection(Servo.Direction.FORWARD);
+
 
         //set pwr to 0
         LFmotor.setPower(0.0);
@@ -83,8 +94,11 @@ class Hardware_MecanumTest {
         RCompliantmotor.setPower(0.0);
         FourBarmotor.setPower(0);
 
-        LClaw.setPosition(0);
-        RClaw.setPosition(0);
+        //LClaw.setPosition(0);
+        //RClaw.setPosition(0);
+
+        claw.setPosition(0);
+        colorTest.setPosition(0);
 
     }
 }

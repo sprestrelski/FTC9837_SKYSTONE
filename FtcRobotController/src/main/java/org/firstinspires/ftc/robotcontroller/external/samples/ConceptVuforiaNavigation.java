@@ -66,6 +66,7 @@ import java.util.List;
  * The two vision target are located on the two walls closest to the audience, facing in.
  * The Stones are on the RED side of the field, and the Chips are on the Blue side.
  *
+ *
  * A final calculation then uses the location of the camera on the robot to determine the
  * robot's location and orientation on the field.
  *
