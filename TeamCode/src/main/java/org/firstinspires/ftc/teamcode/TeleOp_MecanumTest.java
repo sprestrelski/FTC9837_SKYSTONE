@@ -4,6 +4,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.view.View;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
+import java.util.Locale;
+
 /**
  * Created by Sam on 10/16/2019.
  * Edited 10/16: includes motors for the compliant intake
@@ -85,7 +93,22 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             else if (gamepad1.b){
                 pumpkin1.claw.setPosition(1);
             }
-            
+
+
+
+
+            /*
+             * TELEMETRY
+             * sends info back to driver station using telemetry function
+             */
+
+            telemetry.addData("Distance (cm)",
+                    String.format(Locale.US, "%.02f", pumpkin1.distanceCS.getDistance(DistanceUnit.CM)));
+            telemetry.addData("Alpha", pumpkin1.colorS.alpha());
+            telemetry.addData("Red  ", pumpkin1.colorS.red());
+            telemetry.addData("Green", pumpkin1.colorS.green());
+            telemetry.addData("Blue ", pumpkin1.colorS.blue());
+
             /*double servoPosition = 0;
             pumpkin1.LClaw.setPosition(servoPosition);
             pumpkin1.RClaw.setPosition(1-servoPosition);

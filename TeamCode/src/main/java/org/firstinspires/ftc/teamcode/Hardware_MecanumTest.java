@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+
 
 /**
  *  Created by Sam on 9/19/2019.
@@ -40,6 +42,7 @@ class Hardware_MecanumTest {
     Servo colorTest;
 
     ColorSensor colorS;
+    DistanceSensor distanceCS;
 
     public void init(HardwareMap hwMap){
 
