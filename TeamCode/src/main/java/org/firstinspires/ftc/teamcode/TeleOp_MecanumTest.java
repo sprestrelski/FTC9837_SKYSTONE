@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -15,19 +16,41 @@ import java.util.Locale;
 /**
  * Created by Sam on 10/16/2019.
  * Edited 10/16: includes motors for the compliant intake
+ * Edited 11/25-27: servo support, telemetry
+ ****************************
+ *  HORIZONTAL HUB: HUB 2
+ *  LC 0         RC 1
+ *        HUB 2
+ *  FB 2
  *
- * LF 0         RF 1
- *      HUB 1
- * LB 2         RB 3
+ *  HUB 2: address 3
+ *  Servo Port 0: rotateClaw
+ *  Servo Port 4: claw
+ ****************************
+ *  VERTICAL HUB: HUB 1
+ *  LF 0         RF 1
+ *        HUB 1
+ *  LB 2         RB 3
+ *
+ *  HUB 1: address 2
+ *  Servo Port 5: blockPusher
+ ****************************
  */
 
 @TeleOp(name="TeleOp: MecanumTest", group="Linear Opmode")
 public class TeleOp_MecanumTest extends LinearOpMode{
     Hardware_MecanumTest pumpkin1 = new Hardware_MecanumTest();
+    double clawPosition, rotatePosition, pusherPosition;
+    double MIN_POSITION = 0; double MAX_POSITION = 1;
+
     @Override
     public void runOpMode() {
         pumpkin1.init(hardwareMap);
         waitForStart();
+
+        clawPosition = .7;
+        rotatePosition = MIN_POSITION;
+        pusherPosition = MAX_POSITION;
 
         while (opModeIsActive()) {
 
@@ -88,30 +111,36 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             }*/
 
 
-            //open and close claw - a/b
-            if (gamepad1.a) {
-                pumpkin1.claw.setPosition(.7);
-            }
-            else if (gamepad1.b){
-                pumpkin1.claw.setPosition(1);
-            }
+            /*
+             * OPEN/CLOSE CLAW - a/b
+             */
+            // open the claw servo using the A button
+            if (gamepad1.a) clawPosition = .7;
+            // close the claw servo using the B button
+            if (gamepad1.b) clawPosition = 1;
 
-            //rotate claw position - dpad left/dpad right
-            if (gamepad1.dpad_left){
-                pumpkin1.rotateClaw.setPosition(0);
-            }
-            else if (gamepad1.dpad_right){
-                pumpkin1.rotateClaw.setPosition(1);
-            }
+            /*
+             * ROTATE CLAW - dpad left/dpad right
+             */
+            // rotate the claw system servo out using the DPAD_LEFT button if not already at the most open position
+            if (gamepad1.dpad_left && rotatePosition < MAX_POSITION) rotatePosition = rotatePosition + .1;
+            // rotate the claw system servo out  using the DPAD_RIGHT button if not already at the most closed position
+            if (gamepad1.dpad_right && rotatePosition > MIN_POSITION) rotatePosition = rotatePosition - .1;
 
-            //push the block in - dpad up/dpad down
-            if (gamepad1.dpad_up){
-                pumpkin1.blockPusher.setPosition(0);
-            }
-            else if (gamepad1.dpad_down){
-                pumpkin1.blockPusher.setPosition(1);
-            }
 
+            /*
+             * BLOCK PUSHER - dpad up/dpad down
+             */
+            // rotate the block pusher servo OUT using the DPAD_UP button if not already at the most open position
+            if (gamepad1.dpad_up && pusherPosition < MAX_POSITION) pusherPosition = pusherPosition + .1;
+            // rotate the block pusher servo IN using the DPAD_DOWN button if not already at the most in positionw
+            if (gamepad1.dpad_down && pusherPosition > MIN_POSITION) pusherPosition = pusherPosition - .1;
+
+
+            // set the servo values
+            pumpkin1.claw.setPosition(clawPosition);
+            pumpkin1.rotateClaw.setPosition(Range.clip(rotatePosition, MIN_POSITION, MAX_POSITION));
+            pumpkin1.blockPusher.setPosition(Range.clip(pusherPosition, MIN_POSITION, MAX_POSITION));
 
 
 
@@ -121,24 +150,18 @@ public class TeleOp_MecanumTest extends LinearOpMode{
              */
 
             //telemetry.addData("Distance (cm)", String.format(Locale.US, "%.02f", pumpkin1.distanceCS.getDistance(DistanceUnit.CM)));
+
+            //servo data
+            telemetry.addData("clawPosition", clawPosition);
+            telemetry.addData("rotatePosition", rotatePosition);
+            telemetry.addData("pusherPosition", pusherPosition);
+
+            //color sensor data
             telemetry.addData("Alpha", pumpkin1.colorS.alpha());
             telemetry.addData("Red  ", pumpkin1.colorS.red());
             telemetry.addData("Green", pumpkin1.colorS.green());
             telemetry.addData("Blue ", pumpkin1.colorS.blue());
             telemetry.update();
-
-            /*double servoPosition = 0;
-            pumpkin1.LClaw.setPosition(servoPosition);
-            pumpkin1.RClaw.setPosition(1-servoPosition);
-            if(gamepad1.dpad_down) {
-                // close claw
-                pumpkin1.LClaw.setPosition( pumpkin1.LClaw.getPosition() + .1);
-                pumpkin1.RClaw.setPosition( pumpkin1.LClaw.getPosition() + .1);
-            } else if (gamepad1.dpad_up) {
-                // open claw
-                pumpkin1.LClaw.setPosition( pumpkin1.LClaw.getPosition() - .1);
-                pumpkin1.RClaw.setPosition( pumpkin1.LClaw.getPosition() - .1);
-            }*/
 
 
         }

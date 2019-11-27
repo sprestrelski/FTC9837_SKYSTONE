@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 /**
  *  Created by Sam on 9/19/2019.
- *
+ ****************************
  *  HORIZONTAL HUB: HUB 2
  *  LC 0         RC 1
  *        HUB 2
@@ -19,7 +19,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
  *  HUB 2: address 3
  *  Servo Port 0: rotateClaw
  *  Servo Port 4: claw
- *
+ ****************************
  *  VERTICAL HUB: HUB 1
  *  LF 0         RF 1
  *        HUB 1
@@ -27,6 +27,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
  *
  *  HUB 1: address 2
  *  Servo Port 5: blockPusher
+ ****************************
  */
 
 class Hardware_MecanumTest {
@@ -108,7 +109,7 @@ class Hardware_MecanumTest {
         FourBarmotor.setPower(0);
 
         claw.setPosition(.7);
-        rotateClaw.setPosition(0);
+        rotateClaw.setPosition(1);
         //colorTest.setPosition(0);
 
     }
