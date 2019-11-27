@@ -110,6 +110,7 @@ class Hardware_MecanumTest {
 
         claw.setPosition(.7);
         rotateClaw.setPosition(1);
+        blockPusher.setPosition(1);
         //colorTest.setPosition(0);
 
     }
