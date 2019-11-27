@@ -151,6 +151,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             telemetry.addData("clawPosition", String.format("position=%.2f  actual=%.2f", clawPosition, pumpkin1.claw.getPosition()));
             telemetry.addData("rotatePosition", String.format("position=%.2f  actual=%.2f", rotatePosition, pumpkin1.rotateClaw.getPosition()));
             telemetry.addData("pusherPosition", String.format("position=%.2f  actual=%.2f", pusherPosition, pumpkin1.blockPusher.getPosition()));
+            telemetry.addData( "Lolz4lyfe", "hello world");
 
             //color sensor data
             telemetry.addData("Alpha", pumpkin1.colorS.alpha());
