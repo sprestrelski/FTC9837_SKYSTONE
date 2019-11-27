@@ -79,19 +79,37 @@ public class TeleOp_MecanumTest extends LinearOpMode{
                 pumpkin1.FourBarmotor.setPower(0);
             }
 
-            if (pumpkin1.colorS.red() < pumpkin1.colorS.blue()) {
+            /*if (pumpkin1.colorS.red() < pumpkin1.colorS.blue()) {
                 // we have a blue jewel, do something here
                 pumpkin1.colorTest.setPosition(0);
             } else {
                 // we have a red jewel, do something here
                 pumpkin1.colorTest.setPosition(1);
-            }
+            }*/
 
+
+            //open and close claw - a/b
             if (gamepad1.a) {
-                pumpkin1.claw.setPosition(0);
+                pumpkin1.claw.setPosition(.7);
             }
             else if (gamepad1.b){
                 pumpkin1.claw.setPosition(1);
+            }
+
+            //rotate claw position - dpad left/dpad right
+            if (gamepad1.dpad_left){
+                pumpkin1.rotateClaw.setPosition(0);
+            }
+            else if (gamepad1.dpad_right){
+                pumpkin1.rotateClaw.setPosition(1);
+            }
+
+            //push the block in - dpad up/dpad down
+            if (gamepad1.dpad_up){
+                pumpkin1.blockPusher.setPosition(0);
+            }
+            else if (gamepad1.dpad_down){
+                pumpkin1.blockPusher.setPosition(1);
             }
 
 
@@ -102,12 +120,12 @@ public class TeleOp_MecanumTest extends LinearOpMode{
              * sends info back to driver station using telemetry function
              */
 
-            telemetry.addData("Distance (cm)",
-                    String.format(Locale.US, "%.02f", pumpkin1.distanceCS.getDistance(DistanceUnit.CM)));
+            //telemetry.addData("Distance (cm)", String.format(Locale.US, "%.02f", pumpkin1.distanceCS.getDistance(DistanceUnit.CM)));
             telemetry.addData("Alpha", pumpkin1.colorS.alpha());
             telemetry.addData("Red  ", pumpkin1.colorS.red());
             telemetry.addData("Green", pumpkin1.colorS.green());
             telemetry.addData("Blue ", pumpkin1.colorS.blue());
+            telemetry.update();
 
             /*double servoPosition = 0;
             pumpkin1.LClaw.setPosition(servoPosition);
