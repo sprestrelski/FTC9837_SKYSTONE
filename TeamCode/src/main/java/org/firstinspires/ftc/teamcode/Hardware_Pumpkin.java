@@ -2,23 +2,33 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+
 
 /**
- *  Created by Sam on 11/20/2019.
- *  Final HardwareMap for the mecanum chassis Skystone robot.
+ *  Created by Sam on 11/20/2019
+ *  updated by Sam on 11/28/2019
+ ****************************
+ *  HORIZONTAL HUB: HUB 2
  *  LC 0         RC 1
  *        HUB 2
  *  FB 2
  *
  *  HUB 2: address 3
- *
+ *  Servo Port 0: rotateClaw
+ *  Servo Port 4: claw
+ ****************************
+ *  VERTICAL HUB: HUB 1
  *  LF 0         RF 1
  *        HUB 1
  *  LB 2         RB 3
  *
  *  HUB 1: address 2
+ *  Servo Port 5: blockPusher
+ ****************************
  */
 
 class Hardware_Pumpkin {
@@ -34,6 +44,12 @@ class Hardware_Pumpkin {
 
     DcMotor FourBarmotor;
 
+    Servo claw;
+    Servo rotateClaw;
+    Servo blockPusher;
+
+    ColorSensor parkColorS;
+
     public void init(HardwareMap hwMap){
 
         // assigns names
@@ -47,6 +63,9 @@ class Hardware_Pumpkin {
 
         FourBarmotor = hwMap.dcMotor.get("4Bmotor");
 
+        claw = hwMap.servo.get("claw");
+        rotateClaw = hwMap.servo.get("rotateClaw");
+        blockPusher = hwMap.servo.get("blockPusher");
 
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -56,15 +75,17 @@ class Hardware_Pumpkin {
 
         // set direction of motors facing opposite directions
         // DcMotors: Clockwise by default; clockwise on left side = forward
-        LFmotor.setDirection(DcMotor.Direction.FORWARD);
-        LBmotor.setDirection(DcMotor.Direction.FORWARD);
-        RFmotor.setDirection(DcMotor.Direction.REVERSE);
-        RBmotor.setDirection(DcMotor.Direction.REVERSE);
+        LFmotor.setDirection(DcMotor.Direction.REVERSE);
+        LBmotor.setDirection(DcMotor.Direction.REVERSE);
+        RFmotor.setDirection(DcMotor.Direction.FORWARD);
+        RBmotor.setDirection(DcMotor.Direction.FORWARD);
 
-        LCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        RCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        LCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        RCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         FourBarmotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        claw.setDirection(Servo.Direction.FORWARD);
 
         //set pwr to 0
         LFmotor.setPower(0.0);

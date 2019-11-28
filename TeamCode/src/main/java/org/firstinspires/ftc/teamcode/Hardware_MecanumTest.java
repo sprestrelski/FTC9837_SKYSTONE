@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 
-
 /**
  *  Created by Sam on 9/19/2019.
  ****************************
@@ -66,8 +65,6 @@ class Hardware_MecanumTest {
 
         FourBarmotor = hwMap.dcMotor.get("4Bmotor");
 
-        //LClaw = hwMap.servo.get("LClaw");
-        //RClaw = hwMap.servo.get("RClaw");
         claw = hwMap.servo.get("claw");
         rotateClaw = hwMap.servo.get("rotateClaw");
         blockPusher = hwMap.servo.get("blockPusher");
@@ -108,9 +105,8 @@ class Hardware_MecanumTest {
         RCompliantmotor.setPower(0.0);
         FourBarmotor.setPower(0);
 
-        claw.setPosition(.7);
-        rotateClaw.setPosition(1);
-        blockPusher.setPosition(1);
+        //rotateClaw.setPosition(1);
+        //blockPusher.setPosition(0);
         //colorTest.setPosition(0);
 
     }
