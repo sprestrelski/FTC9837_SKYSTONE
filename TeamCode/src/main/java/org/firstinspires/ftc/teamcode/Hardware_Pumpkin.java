@@ -67,6 +67,8 @@ class Hardware_Pumpkin {
         rotateClaw = hwMap.servo.get("rotateClaw");
         blockPusher = hwMap.servo.get("blockPusher");
 
+        parkColorS = hwMap.colorSensor.get("parkColorS");
+
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

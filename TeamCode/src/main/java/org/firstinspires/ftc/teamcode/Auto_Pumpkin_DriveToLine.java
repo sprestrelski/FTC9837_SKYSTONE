@@ -15,7 +15,7 @@ public class Auto_Pumpkin_DriveToLine extends LinearOpMode{
         waitForStart();
 
         //moves left until it sees blue
-        while (autopumpkin.colorS.red() > autopumpkin.colorS.blue())
+        while (autopumpkin.parkColorS.red() > autopumpkin.parkColorS.blue())
         {
             autopumpkin.LFmotor.setPower(-1);
             autopumpkin.LBmotor.setPower(1);

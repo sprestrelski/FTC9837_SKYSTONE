@@ -40,8 +40,9 @@ import java.util.Locale;
 @TeleOp(name="TeleOp: MecanumTest", group="Linear Opmode")
 public class TeleOp_MecanumTest extends LinearOpMode{
     Hardware_MecanumTest pumpkin1 = new Hardware_MecanumTest();
-    double clawPosition, rotatePosition, pusherPosition, servoSpeed;
+    double clawPosition, rotatePosition, pusherPosition, servoSpeed, colorPosition;
     double MIN_POSITION = 0; double MAX_POSITION = 1;
+    double colorCondition;
 
     @Override
     public void runOpMode() {
@@ -103,14 +104,15 @@ public class TeleOp_MecanumTest extends LinearOpMode{
                 pumpkin1.FourBarmotor.setPower(0);
             }
 
-            /*if (pumpkin1.colorS.red() < pumpkin1.colorS.blue()) {
-                // we have a blue jewel, do something here
-                pumpkin1.colorTest.setPosition(0);
-            } else {
-                // we have a red jewel, do something here
-                pumpkin1.colorTest.setPosition(1);
-            }*/
+            // if statement removes chance of ArithmeticException (blue = 0), formula adapted from team 5898's color sensor skystone explanation
+            if (pumpkin1.stoneColorS.blue() != 0) colorCondition = pumpkin1.stoneColorS.red() * pumpkin1.stoneColorS.green() / (pumpkin1.stoneColorS.blue() * pumpkin1.stoneColorS.blue());
 
+            //if the color condition is less than two, it's a skystone
+            // note: 11/28/2019
+            // low lighting conditions means that it detects the orange of the regular stone > the regular skystone,
+            // will need to figure out either distance away from blocks/touch sensor/other method to trigger the color
+            // sensor regardless of lighting
+            colorPosition = (colorCondition < 2 ) ? MAX_POSITION : MIN_POSITION;
 
             /* OPEN/CLOSE CLAW - dpad_up */
             // open the claw servo using the DPAD_UP button
@@ -136,7 +138,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             pumpkin1.claw.setPosition(Range.clip(clawPosition, MIN_POSITION, MAX_POSITION));
             pumpkin1.rotateClaw.setPosition(Range.clip(rotatePosition, MIN_POSITION, MAX_POSITION));
             pumpkin1.blockPusher.setPosition(Range.clip(pusherPosition, MIN_POSITION, MAX_POSITION));
-
+            pumpkin1.colorTest.setPosition(colorPosition);
 
 
             /*
@@ -153,10 +155,18 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             telemetry.addData("pusherPosition", String.format("position=%.2f  actual=%.2f", pusherPosition, pumpkin1.blockPusher.getPosition()));
 
             //color sensor data
-            telemetry.addData("Alpha", pumpkin1.colorS.alpha());
-            telemetry.addData("Red  ", pumpkin1.colorS.red());
-            telemetry.addData("Green", pumpkin1.colorS.green());
-            telemetry.addData("Blue ", pumpkin1.colorS.blue());
+            telemetry.addData("PARK COLOR SENSOR", "");
+            telemetry.addData("Alpha", pumpkin1.parkColorS.alpha());
+            telemetry.addData("Red  ", pumpkin1.parkColorS.red());
+            telemetry.addData("Green", pumpkin1.parkColorS.green());
+            telemetry.addData("Blue ", pumpkin1.parkColorS.blue());
+
+            telemetry.addData("STONE COLOR SENSOR", "");
+            telemetry.addData("Alpha", pumpkin1.stoneColorS.alpha());
+            telemetry.addData("Red  ", pumpkin1.stoneColorS.red());
+            telemetry.addData("Green", pumpkin1.stoneColorS.green());
+            telemetry.addData("Blue ", pumpkin1.stoneColorS.blue());
+
             telemetry.update();
 
 

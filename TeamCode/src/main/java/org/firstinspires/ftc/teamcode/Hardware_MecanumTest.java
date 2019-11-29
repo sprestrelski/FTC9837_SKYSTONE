@@ -46,10 +46,11 @@ class Hardware_MecanumTest {
     //Servo RClaw;
     Servo claw;
     Servo rotateClaw;
-    //Servo colorTest;
+    Servo colorTest;
     Servo blockPusher;
 
-    ColorSensor colorS;
+    ColorSensor parkColorS;
+    ColorSensor stoneColorS;
     DistanceSensor distanceCS;
 
     public void init(HardwareMap hwMap){
@@ -69,8 +70,9 @@ class Hardware_MecanumTest {
         rotateClaw = hwMap.servo.get("rotateClaw");
         blockPusher = hwMap.servo.get("blockPusher");
 
-        //colorTest = hwMap.servo.get("colorTest");
-        colorS = hwMap.colorSensor.get("colorS");
+        colorTest = hwMap.servo.get("colorTest");
+        parkColorS = hwMap.colorSensor.get("parkColorS");
+        stoneColorS = hwMap.colorSensor.get("stoneColorS");
 
         // set brakes on motors
         LFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -107,7 +109,7 @@ class Hardware_MecanumTest {
 
         //rotateClaw.setPosition(1);
         //blockPusher.setPosition(0);
-        //colorTest.setPosition(0);
+        colorTest.setPosition(0);
 
     }
 }

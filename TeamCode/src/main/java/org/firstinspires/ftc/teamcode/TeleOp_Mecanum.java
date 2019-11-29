@@ -32,7 +32,7 @@ import java.util.Locale;
 
 @TeleOp(name="TeleOp: Mecanum", group="Linear Opmode")
 public class TeleOp_Mecanum extends LinearOpMode{
-    Hardware_MecanumTest pumpkin = new Hardware_MecanumTest();
+    Hardware_Pumpkin pumpkin = new Hardware_Pumpkin();
     double clawPosition, rotatePosition, pusherPosition, servoSpeed;
     double MIN_POSITION = 0; double MAX_POSITION = 1;
 
@@ -136,10 +136,10 @@ public class TeleOp_Mecanum extends LinearOpMode{
             telemetry.addData("pusherPosition", String.format("position=%.2f  actual=%.2f", pusherPosition, pumpkin.blockPusher.getPosition()));
 
             //color sensor data
-            telemetry.addData("Alpha", pumpkin.colorS.alpha());
-            telemetry.addData("Red  ", pumpkin.colorS.red());
-            telemetry.addData("Green", pumpkin.colorS.green());
-            telemetry.addData("Blue ", pumpkin.colorS.blue());
+            telemetry.addData("Alpha", pumpkin.parkColorS.alpha());
+            telemetry.addData("Red  ", pumpkin.parkColorS.red());
+            telemetry.addData("Green", pumpkin.parkColorS.green());
+            telemetry.addData("Blue ", pumpkin.parkColorS.blue());
             telemetry.update();
 
 
