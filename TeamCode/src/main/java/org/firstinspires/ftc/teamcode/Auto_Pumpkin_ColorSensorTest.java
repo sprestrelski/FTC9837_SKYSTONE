@@ -15,7 +15,7 @@ public class Auto_Pumpkin_ColorSensorTest extends LinearOpMode{
         autopumpkin.init(hardwareMap);
 
         waitForStart();
-        
+
         /*
             Planned Pseudocode
                 1. drive forward to stones
@@ -26,36 +26,47 @@ public class Auto_Pumpkin_ColorSensorTest extends LinearOpMode{
                 6. move right to cross skybridge
          */
 
-        moveForward();
-        sleep(3000);
-        stopMovement();
-        moveLeft();
+        //moveForward(-.75);
+        //sleep(3000);
+        //stopMovement();
+        moveRight(.75);
         sleep(2500);
         stopMovement();
 
-        do
-        {
+        do {
             if (autopumpkin.stoneColorS.blue() != 0) colorCondition = autopumpkin.stoneColorS.red() * autopumpkin.stoneColorS.green() / (autopumpkin.stoneColorS.blue() * autopumpkin.stoneColorS.blue());
-            moveRight(.5);
+            moveLeft(.25);
         }while (colorCondition < 2);
 
+        do {
+            if (autopumpkin.stoneColorS.blue() != 0) colorCondition = autopumpkin.stoneColorS.red() * autopumpkin.stoneColorS.green() / (autopumpkin.stoneColorS.blue() * autopumpkin.stoneColorS.blue());
+            moveLeft(.25);
+        }while (colorCondition > 2);
+        autopumpkin.blockPusher.setPosition(1); 
         stopMovement();
     }
 
-    public void moveForward()
+    public void moveRobot(double LF, double LB, double RF, double RB)
     {
-        autopumpkin.LFmotor.setPower(1);
-        autopumpkin.LBmotor.setPower(1);
-        autopumpkin.RFmotor.setPower(1);
-        autopumpkin.RBmotor.setPower(1);
+        autopumpkin.LFmotor.setPower(LF);
+        autopumpkin.LBmotor.setPower(LB);
+        autopumpkin.RFmotor.setPower(RF);
+        autopumpkin.RBmotor.setPower(RB);
+    }
+    public void moveForward(double motorPower)
+    {
+        autopumpkin.LFmotor.setPower(motorPower);
+        autopumpkin.LBmotor.setPower(motorPower);
+        autopumpkin.RFmotor.setPower(motorPower);
+        autopumpkin.RBmotor.setPower(motorPower);
     }
 
-    public void moveLeft()
+    public void moveLeft(double motorPower)
     {
-        autopumpkin.LFmotor.setPower(-1);
-        autopumpkin.LBmotor.setPower(1);
-        autopumpkin.RFmotor.setPower(1);
-        autopumpkin.RBmotor.setPower(-1);
+        autopumpkin.LFmotor.setPower(-motorPower);
+        autopumpkin.LBmotor.setPower(motorPower);
+        autopumpkin.RFmotor.setPower(motorPower);
+        autopumpkin.RBmotor.setPower(-motorPower);
     }
 
     public void moveRight(double motorPower)
