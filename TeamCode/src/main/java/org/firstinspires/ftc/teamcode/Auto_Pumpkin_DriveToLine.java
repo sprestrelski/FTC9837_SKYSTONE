@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 /*
  * Created by Sam on 11/26/19/
  */
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Auto_Pumpkin: DL to Blue", group="Pushbot")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Auto_Pumpkin: Drive Right to Blue", group="Pushbot")
 public class Auto_Pumpkin_DriveToLine extends LinearOpMode{
     Hardware_MecanumTest autopumpkin = new Hardware_MecanumTest();
     public void runOpMode(){

@@ -48,6 +48,7 @@ class Hardware_MecanumTest {
     Servo rotateClaw;
     Servo colorTest;
     Servo blockPusher;
+    Servo blockStealer;
 
     ColorSensor parkColorS;
     ColorSensor stoneColorS;
@@ -69,7 +70,7 @@ class Hardware_MecanumTest {
         claw = hwMap.servo.get("claw");
         rotateClaw = hwMap.servo.get("rotateClaw");
         blockPusher = hwMap.servo.get("blockPusher");
-
+        blockStealer = hwMap.servo.get("blockStealer");
         colorTest = hwMap.servo.get("colorTest");
         parkColorS = hwMap.colorSensor.get("parkColorS");
         stoneColorS = hwMap.colorSensor.get("stoneColorS");
@@ -82,10 +83,10 @@ class Hardware_MecanumTest {
 
         // set direction of motors facing opposite directions
         // DcMotors: Clockwise by default; clockwise on left side = forward
-        LFmotor.setDirection(DcMotor.Direction.REVERSE);
-        LBmotor.setDirection(DcMotor.Direction.REVERSE);
-        RFmotor.setDirection(DcMotor.Direction.FORWARD);
-        RBmotor.setDirection(DcMotor.Direction.FORWARD);
+        LFmotor.setDirection(DcMotor.Direction.FORWARD);
+        LBmotor.setDirection(DcMotor.Direction.FORWARD);
+        RFmotor.setDirection(DcMotor.Direction.REVERSE);
+        RBmotor.setDirection(DcMotor.Direction.REVERSE);
 
         LCompliantmotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RCompliantmotor.setDirection(DcMotorSimple.Direction.FORWARD);

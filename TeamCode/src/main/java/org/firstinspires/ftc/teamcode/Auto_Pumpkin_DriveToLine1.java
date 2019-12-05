@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 /*
  * Created by Sam on 11/26/19/
  */
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Right until blue line", group="Pushbot")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Auto_Pumpkin: Drive Left to Red", group="Pushbot")
 public class Auto_Pumpkin_DriveToLine1 extends LinearOpMode{
     Hardware_MecanumTest autopumpkin = new Hardware_MecanumTest();
     public void runOpMode(){
@@ -15,7 +15,7 @@ public class Auto_Pumpkin_DriveToLine1 extends LinearOpMode{
         waitForStart();
 
         //moves left until it sees blue
-        while (autopumpkin.parkColorS.red() > autopumpkin.parkColorS.blue())
+        while (autopumpkin.parkColorS.red() < autopumpkin.parkColorS.blue())
         {
             autopumpkin.LFmotor.setPower(1);
             autopumpkin.LBmotor.setPower(-1);

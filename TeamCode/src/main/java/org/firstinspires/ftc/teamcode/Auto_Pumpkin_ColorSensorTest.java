@@ -26,23 +26,47 @@ public class Auto_Pumpkin_ColorSensorTest extends LinearOpMode{
                 6. move right to cross skybridge
          */
 
-        //moveForward(-.75);
-        //sleep(3000);
-        //stopMovement();
+        // moves FORWARD to Stones
+        moveForward(-.75);
+        sleep(3000);
+        stopMovement();
+
+        // moves RIGHT to wall
         moveRight(.75);
         sleep(2500);
         stopMovement();
 
+        // moves LEFT until it finds a regular stone
         do {
             if (autopumpkin.stoneColorS.blue() != 0) colorCondition = autopumpkin.stoneColorS.red() * autopumpkin.stoneColorS.green() / (autopumpkin.stoneColorS.blue() * autopumpkin.stoneColorS.blue());
             moveLeft(.25);
         }while (colorCondition < 2);
 
+        // CONTINUES to move LEFT until it finds a Skystone
         do {
             if (autopumpkin.stoneColorS.blue() != 0) colorCondition = autopumpkin.stoneColorS.red() * autopumpkin.stoneColorS.green() / (autopumpkin.stoneColorS.blue() * autopumpkin.stoneColorS.blue());
             moveLeft(.25);
         }while (colorCondition > 2);
-        autopumpkin.blockPusher.setPosition(1); 
+
+        // captures block
+        autopumpkin.blockStealer.setPosition(1);
+
+        // moves LEFT until it sees a BLUE line
+        do {
+            moveLeft(.25);
+        } while (autopumpkin.parkColorS.red() > autopumpkin.parkColorS.blue());
+        // moves the bot a bit past the line
+        sleep(1500);
+
+        // releases block
+        autopumpkin.blockStealer.setPosition(0);
+
+        // moves RIGHT until it sees a BLUE line
+        do {
+            moveRight(.25);
+        } while (autopumpkin.parkColorS.red() > autopumpkin.parkColorS.blue());
+
+        // stops the bot
         stopMovement();
     }
 
