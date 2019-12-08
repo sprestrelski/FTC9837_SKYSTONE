@@ -107,7 +107,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             }
 
             // if statement removes chance of ArithmeticException (blue = 0), formula adapted from team 5898's color sensor skystone explanation
-            if (pumpkin1.stoneColorS.blue() != 0) colorCondition = pumpkin1.stoneColorS.red() * pumpkin1.stoneColorS.green() / (pumpkin1.stoneColorS.blue() * pumpkin1.stoneColorS.blue());
+            //if (pumpkin1.stoneColorS.blue() != 0) colorCondition = pumpkin1.stoneColorS.red() * pumpkin1.stoneColorS.green() / (pumpkin1.stoneColorS.blue() * pumpkin1.stoneColorS.blue());
 
             //if the color condition is less than two, it's a skystone
             // note: 11/28/2019
@@ -130,10 +130,10 @@ public class TeleOp_MecanumTest extends LinearOpMode{
 
 
             /* BLOCK STEALER - y and x */
-            // put DOWN the block stealer servo using the X button
-            if (gamepad1.x) stealerPosition= stealerPosition + servoSpeed;
-            // put UP the block stealer servo using the Y button
-            if (gamepad1.y) stealerPosition = stealerPosition - servoSpeed;
+            // put UP the block stealer servo using the X button
+            if (gamepad1.x && stealerPosition < MAX_POSITION) stealerPosition= stealerPosition + servoSpeed;
+            // put DOWN the block stealer servo using the Y button
+            if (gamepad1.y && stealerPosition > MIN_POSITION) stealerPosition = stealerPosition - servoSpeed;
 
             /* BLOCK PUSHER - a/b */
             // rotate the block pusher servo OUT using the A button if not already at the most open position

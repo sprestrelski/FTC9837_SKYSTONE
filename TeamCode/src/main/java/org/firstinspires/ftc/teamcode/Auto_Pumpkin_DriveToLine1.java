@@ -15,12 +15,12 @@ public class Auto_Pumpkin_DriveToLine1 extends LinearOpMode{
         waitForStart();
 
         //moves left until it sees blue
-        while (autopumpkin.parkColorS.red() < autopumpkin.parkColorS.blue())
+        while (autopumpkin.parkColorS.red() < autopumpkin.parkColorS.blue() || autopumpkin.parkColorS.red() < 100)
         {
-            autopumpkin.LFmotor.setPower(1);
-            autopumpkin.LBmotor.setPower(-1);
-            autopumpkin.RFmotor.setPower(-1);
-            autopumpkin.RBmotor.setPower(1);
+            autopumpkin.LFmotor.setPower(.5);
+            autopumpkin.LBmotor.setPower(-.5);
+            autopumpkin.RFmotor.setPower(-.5);
+            autopumpkin.RBmotor.setPower(.5);
         }
 
         autopumpkin.LFmotor.setPower(0.0);

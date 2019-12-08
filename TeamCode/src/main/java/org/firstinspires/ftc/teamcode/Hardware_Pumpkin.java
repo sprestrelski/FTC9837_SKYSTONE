@@ -77,6 +77,7 @@ class Hardware_Pumpkin {
 
         // set direction of motors facing opposite directions
         // DcMotors: Clockwise by default; clockwise on left side = forward
+        // Front is at COMPLIANT WHEELS
         LFmotor.setDirection(DcMotor.Direction.REVERSE);
         LBmotor.setDirection(DcMotor.Direction.REVERSE);
         RFmotor.setDirection(DcMotor.Direction.FORWARD);

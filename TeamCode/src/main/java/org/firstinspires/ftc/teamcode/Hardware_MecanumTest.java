@@ -80,9 +80,13 @@ class Hardware_MecanumTest {
         LBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RFmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RBmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LCompliantmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        RCompliantmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FourBarmotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // set direction of motors facing opposite directions
         // DcMotors: Clockwise by default; clockwise on left side = forward
+        // FRONT = non-compliant wheels
         LFmotor.setDirection(DcMotor.Direction.FORWARD);
         LBmotor.setDirection(DcMotor.Direction.FORWARD);
         RFmotor.setDirection(DcMotor.Direction.REVERSE);
@@ -93,8 +97,6 @@ class Hardware_MecanumTest {
 
         FourBarmotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        //LClaw.setDirection(Servo.Direction.FORWARD);
-        //RClaw.setDirection(Servo.Direction.REVERSE);
         claw.setDirection(Servo.Direction.FORWARD);
 
 
@@ -108,8 +110,6 @@ class Hardware_MecanumTest {
         RCompliantmotor.setPower(0.0);
         FourBarmotor.setPower(0);
 
-        //rotateClaw.setPosition(1);
-        //blockPusher.setPosition(0);
         colorTest.setPosition(0);
 
     }

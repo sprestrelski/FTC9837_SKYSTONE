@@ -28,7 +28,7 @@ public class Auto_Pumpkin_ColorSensorTest extends LinearOpMode{
 
         // moves FORWARD to Stones
         moveForward(-.75);
-        sleep(3000);
+        sleep(2000);
         stopMovement();
 
         // moves RIGHT to wall
