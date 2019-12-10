@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /*
- * Created by Sam on 11/26/19/
+ * Created by Sam on 12/10/2019
  */
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Auto_Pumpkin: Drive Left to Red", group="Pushbot")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Auto_Pumpkin: Drive RIGHT to Red", group="Pumpkin: RED")
 public class Auto_Pumpkin_DriveToLine1 extends LinearOpMode{
     Hardware_MecanumTest autopumpkin = new Hardware_MecanumTest();
     public void runOpMode(){
@@ -14,41 +14,20 @@ public class Auto_Pumpkin_DriveToLine1 extends LinearOpMode{
 
         waitForStart();
 
-        //moves left until it sees blue
+        //moves right until it sees red
         while (autopumpkin.parkColorS.red() < autopumpkin.parkColorS.blue() || autopumpkin.parkColorS.red() < 100)
         {
-            autopumpkin.LFmotor.setPower(.5);
-            autopumpkin.LBmotor.setPower(-.5);
-            autopumpkin.RFmotor.setPower(-.5);
-            autopumpkin.RBmotor.setPower(.5);
+            movement(.5,-.5,-.5,.5);
         }
 
-        autopumpkin.LFmotor.setPower(0.0);
-        autopumpkin.LBmotor.setPower(0.0);
-        autopumpkin.RFmotor.setPower(0.0);
-        autopumpkin.RBmotor.setPower(0.0);
+        movement(0,0,0,0);
 
-        /*
-        tank.liftUpMotor.setPower(1.0);
-        sleep( 5300);//lower: 4 sec; 4.75, 4.82,
-        tank.liftUpMotor.setPower(0.0);
-        sleep(500);
-        //raise: 8.5
-        tank.leftDrive.setPower(1.0);
-        tank.rightDrive.setPower(1.0);
-        sleep(1800);
-
-        tank.leftDrive.setPower(1.0);
-        tank.rightDrive.setPower(-1.0);
-        sleep(1000);
-
-        tank.leftDrive.setPower(1.0);
-        tank.rightDrive.setPower(1.0);
-        sleep(5000);
-
-        tank.leftDrive.setPower(0.0);
-        tank.rightDrive.setPower(0.0);
-        */
-
+    }
+    public void movement(double LF, double LB, double RF, double RB)
+    {
+        autopumpkin.LFmotor.setPower(LF);
+        autopumpkin.LBmotor.setPower(LB);
+        autopumpkin.RFmotor.setPower(RF);
+        autopumpkin.RBmotor.setPower(RB);
     }
 }

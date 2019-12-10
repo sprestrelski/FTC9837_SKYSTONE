@@ -41,9 +41,9 @@ import java.util.Locale;
 @TeleOp(name="TeleOp: MecanumTest", group="Linear Opmode")
 public class TeleOp_MecanumTest extends LinearOpMode{
     Hardware_MecanumTest pumpkin1 = new Hardware_MecanumTest();
-    double clawPosition, rotatePosition, pusherPosition, servoSpeed, rotateSpeed, colorPosition, stealerPosition;
+    double clawPosition, rotatePosition, pusherPosition, servoSpeed, rotateSpeed, stealerPosition;
     double MIN_POSITION = 0; double MAX_POSITION = 1;
-    double LOWER_CLAW_LIMIT = .2; double UPPER_CLAW_LIMIT = .8;
+    double LOWER_CLAW_LIMIT = .4; double UPPER_CLAW_LIMIT = 1;
     double colorCondition;
 
     @Override
@@ -114,7 +114,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             // low lighting conditions means that it detects the orange of the regular stone > the regular skystone,
             // will need to figure out either distance away from blocks/touch sensor/other method to trigger the color
             // sensor regardless of lighting
-            colorPosition = (colorCondition < 2 ) ? MAX_POSITION : MIN_POSITION;
+            //colorPosition = (colorCondition < 2 ) ? MAX_POSITION : MIN_POSITION;
 
             /* OPEN/CLOSE CLAW - dpad down/dpad up */
             // open the claw servo using the DPAD_DOWN button
@@ -131,7 +131,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
 
             /* BLOCK STEALER - y and x */
             // put UP the block stealer servo using the X button
-            if (gamepad1.x && stealerPosition < MAX_POSITION) stealerPosition= stealerPosition + servoSpeed;
+            if (gamepad1.x && stealerPosition < .75) stealerPosition= stealerPosition + servoSpeed;
             // put DOWN the block stealer servo using the Y button
             if (gamepad1.y && stealerPosition > MIN_POSITION) stealerPosition = stealerPosition - servoSpeed;
 
@@ -147,7 +147,6 @@ public class TeleOp_MecanumTest extends LinearOpMode{
             pumpkin1.rotateClaw.setPosition(Range.clip(rotatePosition, MIN_POSITION, MAX_POSITION));
             pumpkin1.blockPusher.setPosition(Range.clip(pusherPosition, MIN_POSITION, MAX_POSITION));
             pumpkin1.blockStealer.setPosition(Range.clip(stealerPosition, MIN_POSITION,MAX_POSITION));
-            pumpkin1.colorTest.setPosition(colorPosition);
 
 
             /*

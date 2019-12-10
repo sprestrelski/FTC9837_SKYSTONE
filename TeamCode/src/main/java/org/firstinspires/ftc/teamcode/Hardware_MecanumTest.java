@@ -71,7 +71,6 @@ class Hardware_MecanumTest {
         rotateClaw = hwMap.servo.get("rotateClaw");
         blockPusher = hwMap.servo.get("blockPusher");
         blockStealer = hwMap.servo.get("blockStealer");
-        colorTest = hwMap.servo.get("colorTest");
         parkColorS = hwMap.colorSensor.get("parkColorS");
         stoneColorS = hwMap.colorSensor.get("stoneColorS");
 
@@ -109,8 +108,6 @@ class Hardware_MecanumTest {
         LCompliantmotor.setPower(0.0);
         RCompliantmotor.setPower(0.0);
         FourBarmotor.setPower(0);
-
-        colorTest.setPosition(0);
 
     }
 }
