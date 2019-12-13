@@ -16,7 +16,7 @@ public class Auto_Pumpkin_Forward_DriveToLine3 extends LinearOpMode{
 
         //move FORWARD
         movement(.75,.75,.75,.75);
-        sleep (1500);
+        sleep (1400);
 
         //moves LEFT until it sees red
         while (autopumpkin.parkColorS.red() < autopumpkin.parkColorS.blue() || autopumpkin.parkColorS.red() < 100)

@@ -61,7 +61,7 @@ public class TeleOp_MecanumTest extends LinearOpMode{
 
 
             //rotation - right joystick
-            double rightX = gamepad1.right_stick_x;
+            double rightX = -gamepad1.right_stick_x;
             //movement - left joystick
             double leftX = gamepad1.left_stick_x;
             double leftY = -gamepad1.left_stick_y;
